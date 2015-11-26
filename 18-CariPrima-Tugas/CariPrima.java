@@ -43,8 +43,9 @@ public class CariPrima {
                   //  Thread thread = new Thread(benarPrima[i]);
                 }
             }   
+            angka+=1;
         }
-        angka+=1;
+        
             // ALGORITMA-nya:
             //   Untuk setiap elemen dari benarPrima (=thread yang kita buat)
             //       Jika elemen-nya belum dibuat
@@ -72,5 +73,5 @@ public class CariPrima {
     
     private final static String NAMA_BERKAS = "prima.log";
     private final static int JUMLAH_THREAD = 10;
-    private final static int ANGKA_TERBESAR = 10;
+    private final static int ANGKA_TERBESAR = 100;
 }
