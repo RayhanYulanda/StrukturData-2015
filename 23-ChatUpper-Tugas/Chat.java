@@ -1,58 +1,55 @@
 import java.net.Socket;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.io.Reader;
 import java.io.OutputStreamWriter;
-import java.io.InputStream;
-import java.io.BufferedInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
-public class Chat
-{
-    private Socket koneksi = null;
-    String jawaban = "";
-    public void send(String pesan) 
+import java.util.Scanner;
+
+public class Chat {    
+    public void send()
                 throws UnknownHostException, IOException {
-        // 0. Buka socket
-        koneksi = new Socket("192.168..193", 33333);//43 protokol whois
+        Socket socket2 = new Socket("192.168.43.218", 33333);//dibawah kominfo untuk registrasi utama diIndonesia protocol whois di port 43
 
-        kirimPerintah(pesan);
-        
-        terimapesan();
-        
-        kirimPerintah(jawaban);
-        
-        koneksi.close();
-    }
-    
-    public void kirimPerintah(String pesan) throws IOException {
-        // 1 & 2. Minta socket untuk ditulis dan Langsung dibuka
-        OutputStream keluaran = koneksi.getOutputStream();
-        // Note: Karena protokol-nya berbasis teks pakai writer aja.
-        Writer keluaranWriter = new OutputStreamWriter(keluaran); 
-        // 3. Selagi ada data kirim
-        keluaranWriter.write(pesan);
-        // Syarat protokol-nya, semua perintah diakhiri dengan: CR & LF
-        keluaranWriter.write("\r\n"); 
-        keluaranWriter.flush(); // Paksa kirim data yang belum terkirim
-    }
-    
-    public void terimapesan() throws IOException {
-        // 1 & 2. Minta socket untuk baca -> Langsung dibuka
-        
-        InputStream masukan = koneksi.getInputStream();
-        // Karena keluarannya panjang sehingga harus dibuffer
-        BufferedInputStream masukanBuffer = new BufferedInputStream(masukan);
-        // Selagi masih ada data baca
-        System.out.println("Balasan :");
-        int data = masukanBuffer.read();
-        while (data != -1) {
-            jawaban=jawaban + Character.toUpperCase(data);
-            System.out.write((char) data);
-            data = masukanBuffer.read();
+        try{
+            Scanner keyboard = new Scanner(System.in);
+            System.out.print("Pesan: ");
+            String pesan = keyboard.nextLine();
+                    
+            // Tulis ke socket
+            Writer keluaranWriter = new OutputStreamWriter(socket2.getOutputStream()); 
+            BufferedWriter keluaranBuff = new BufferedWriter(keluaranWriter);
+            keluaranBuff.write(pesan);
+            keluaranBuff.write("\n");
+            keluaranBuff.flush();
+                
+            // Baca dari Server
+            System.out.print("Server: ");
+            Reader masukan = new InputStreamReader(socket2.getInputStream()); 
+            BufferedReader masukanBuff = new BufferedReader(masukan);
+            String baris = masukanBuff.readLine();
+            System.out.println(baris);    
+            
+            baris = baris.toUpperCase();
+            
+            keluaranBuff.write(baris);
+            keluaranBuff.flush();
+        }
+        catch(IOException salah) {
+            System.out.println(salah);
+        }
+        finally {
+            if (socket2 != null)
+            socket2.close();
         }
     }
-    
 }
+
+            
+       

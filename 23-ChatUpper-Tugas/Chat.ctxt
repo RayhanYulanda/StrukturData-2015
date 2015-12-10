@@ -1,8 +1,4 @@
 #BlueJ class context
-comment0.params=pesan
-comment0.target=void\ send(java.lang.String)
-comment1.params=pesan
-comment1.target=void\ kirimPerintah(java.lang.String)
-comment2.params=
-comment2.target=void\ terimapesan()
-numComments=3
+comment0.params=
+comment0.target=void\ send()
+numComments=1
