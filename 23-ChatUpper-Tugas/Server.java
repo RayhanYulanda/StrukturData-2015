@@ -60,7 +60,7 @@ public class Server {
         keluaranBuf.flush();
         
         baris = masukanReader.readLine();
-        System.out.println("Chat upper : "+baris);
+        System.out.println("Pesan dari Client: "+baris);
     }
 
     private ServerSocket serverSocket = null;
