@@ -45,7 +45,7 @@ public class ProcessClientThread implements Runnable {
             keluaranBuf.newLine();
             keluaranBuf.flush();
           }
-          else if(perintah.compareTo("WAKTU")==0){ 
+        else if(perintah.compareTo("WAKTU")==0){ 
                waktu = kalender.getTime().toString();
                OutputStream keluaran = koneksi.getOutputStream();
                BufferedWriter keluaranBuf = new BufferedWriter(new OutputStreamWriter(keluaran));
@@ -53,50 +53,26 @@ public class ProcessClientThread implements Runnable {
                keluaranBuf.newLine();
                keluaranBuf.flush();
           }
-     
-        else if ((words[0].compareTo("WAKTU")==0) && Character.isDigit(words[1].charAt(0))) 
-        {
-            int N = Integer.parseInt(words[1]);
-            OutputStream keluaran = koneksi.getOutputStream();
-               BufferedWriter keluaranBuf = new BufferedWriter(new OutputStreamWriter(keluaran));
-            
-            //menambah waktu sesuai N
-            kalender.add(Calendar.HOUR_OF_DAY, N);
-            
-            //konversi waktu ke string
-            String waktuStr = kalender.getTime().toString();
-            
-            keluaranBuf.write(waktuStr);            
-            keluaranBuf.newLine();
-            keluaranBuf.flush();
-        }
         //mengurangi waktu
-        else if ((words[0].compareTo("WAKTU")==0) && Character.isDigit(words[1].charAt(1))) 
+        else if (words.length==2) 
         {
-            int N = Integer.parseInt(words[1]);
-            OutputStream keluaran = koneksi.getOutputStream();
+            if(words[0].equals("WAKTU")){
+              int N = Character.getNumericValue(words[1].charAt(0));
+              OutputStream keluaran = koneksi.getOutputStream();
                BufferedWriter keluaranBuf = new BufferedWriter(new OutputStreamWriter(keluaran));
             
-            //mengurangi waktu sesuai N
-            kalender.add(Calendar.HOUR_OF_DAY, N);
+              //mengurangi waktu sesuai N
+              kalender.add(Calendar.HOUR_OF_DAY, N);
             
-            //konversi waktu ke string
-            String waktuStr = kalender.getTime().toString();
+              //konversi waktu ke string
+              String waktuStr = kalender.getTime().toString();
             
-            keluaranBuf.write(waktuStr);            
-            keluaranBuf.newLine();
-            keluaranBuf.flush();
+              keluaranBuf.write(waktuStr);            
+              keluaranBuf.newLine();
+              keluaranBuf.flush();
+            }
         }
           
-           
-          /*else if(words[1].equals("salah")){
-             OutputStream keluaran = koneksi.getOutputStream();
-             BufferedWriter keluaranBuf = new BufferedWriter(new OutputStreamWriter(keluaran));
-             int n = Integer.parseInt(words[1]);
-             kalender.add(Calendar.HOUR_OF_DAY,n);
-             waktu = kalender.getTime().toString();
-             keluaranBuf.write(waktu);
-            }*/
           else{
             OutputStream keluaran = koneksi.getOutputStream();
             BufferedWriter keluaranBuf = new BufferedWriter(new OutputStreamWriter(keluaran)); 
