@@ -92,9 +92,9 @@ public class Client {
               else{
                 System.out.println("\nPerintah untuk data salah");
               }
-             }
+            }
              
-             else if(perintah[0].compareTo("KELUAR")==0){
+            else if(perintah[0].compareTo("KELUAR")==0){
               Writer keluaranWriter = new OutputStreamWriter(socket.getOutputStream()); 
               BufferedWriter keluaranBuff = new BufferedWriter(keluaranWriter);
               keluaranBuff.write(ketikanSatuBaris);
@@ -144,16 +144,18 @@ public class Client {
               else{
                   System.out.println(baris);
               }
-             }
-              // Tulis ke socket
-             else{
+            }
+            else{
               Writer keluaranWriter = new OutputStreamWriter(socket.getOutputStream()); 
               BufferedWriter keluaranBuff = new BufferedWriter(keluaranWriter);
               keluaranBuff.write(ketikanSatuBaris);
               keluaranBuff.write("\n");
               keluaranBuff.flush();
             
-            
+              //terima dari server kemungkinan banyak, ada kemungkinan kirim karcis atau kesalahan
+              //jika sudah di split dengan # panjangnya 1 maka kemungkinan adanya kesalahan
+              //jika panjangnya lebih dari satu maka itu terimaan untuk karcis masuk
+              
               System.out.print("\nDari server : ");
               Reader masukan = new InputStreamReader(socket.getInputStream()); 
               BufferedReader masukanBuff = new BufferedReader(masukan);
@@ -172,6 +174,7 @@ public class Client {
               System.out.println("\n\t"+tiketmasuk[0]+"\n");
               System.out.println("=========================================================\n");
              }
+             //jika panjang tiket masuk hanya terdiri dari 1 string
              else{
               System.out.println(baris);
              }
