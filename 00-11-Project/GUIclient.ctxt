@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=GUIclient()
+comment0.text=Konstruktor\ tanpa\ argumen
+comment1.params=
+comment1.target=void\ makeFrame()
+comment1.text=Mengatur\ dan\ menampilkan\ frame\ utama
+comment2.params=
+comment2.target=void\ komponenVisual()
+comment3.params=
+comment3.target=void\ aksireaksi()
+comment4.params=e
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment5.params=e
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment6.params=e
+comment6.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment7.params=gantii
+comment7.target=java.lang.String\ gantispasi(java.lang.String)
+comment8.params=gantii
+comment8.target=java.lang.String\ gantiunder(java.lang.String)
+comment9.params=
+comment9.target=java.lang.String\ tipe()
+numComments=10

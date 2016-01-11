@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=plat\ pintumasuk\ nomorparkiran
+comment0.target=Becak(java.lang.String,\ java.lang.String,\ int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Mobil\r\n
+comment1.params=
+comment1.target=int\ hitungbayar()
+comment2.params=gantii
+comment2.target=java.lang.String\ gantispasi(java.lang.String)
+numComments=3
