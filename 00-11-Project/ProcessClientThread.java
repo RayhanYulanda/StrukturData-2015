@@ -258,6 +258,9 @@ public class ProcessClientThread implements Runnable {
                                int bayarmotor = Motorcycle.get(index).hitungbayar();
                                String semuadatamotor ="Ada Motor "+Motorcycle.get(index).plat+" "+Motorcycle.get(index).pintumasuk+" "+Motorcycle.get(index).kodeparkir+" "+bayarmotor;
                                semuadatamotor = semuadatamotor+" "+Motorcycle.get(index).strcalendarin+" "+Motorcycle.get(index).strcalendarout;
+                               if(Motorcycle.get(index).plat.equals(perintah[2])){
+                                   semuadatamotor=semuadatamotor+" denda";
+                               }
                                keluaranBuf.write(semuadatamotor);
                                keluaranBuf.newLine();
                                keluaranBuf.flush();
@@ -300,6 +303,9 @@ public class ProcessClientThread implements Runnable {
                                int bayarbecak = becak.get(index).hitungbayar();
                                String semuadatabecak ="Ada Becak "+becak.get(index).plat+" "+becak.get(index).pintumasuk+" "+becak.get(index).kodeparkir+" "+bayarbecak;
                                semuadatabecak = semuadatabecak+" "+becak.get(index).strcalendarin+" "+becak.get(index).strcalendarout;
+                               if(becak.get(index).plat.equals(perintah[2])){
+                                   semuadatabecak=semuadatabecak+" denda";
+                               }
                                keluaranBuf.write(semuadatabecak);
                                keluaranBuf.newLine();
                                keluaranBuf.flush();
